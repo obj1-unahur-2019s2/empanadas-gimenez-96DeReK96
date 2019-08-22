@@ -10,3 +10,23 @@ test "sueldo de Baigorria y de Galván" {
 	galvan.sueldo(12000)
 	assert.equals(12000, galvan.sueldo())
 }
+
+test "se rompe" {
+	assert.equals(10000, galvan.sueldo())
+}
+
+test "gimenez" {
+	// balgoria vende 4 empanadas
+	baigorria.venderEmpanada()
+	baigorria.venderEmpanada()
+	baigorria.venderEmpanada()
+	baigorria.venderEmpanada()
+	// poner el sueldo de galvan en 20000
+	galvan.sueldo(5000)
+	// que gimenez les pague a los dos
+	gimenez.pagarA(baigorria)
+	gimenez.pagarA(galvan)
+	// vereficar con cuanto dinero queda
+	// gimenez
+	gimenez.dinero()
+}
