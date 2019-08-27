@@ -11,9 +11,8 @@ test "sueldo de Baigorria y de Galván" {
 	assert.equals(12000, galvan.sueldo())
 }
 
-test "se rompe" {
-	assert.equals(10000, galvan.sueldo())
-}
+
+
 
 test "gimenez" {
 	// balgoria vende 4 empanadas
@@ -28,5 +27,31 @@ test "gimenez" {
 	gimenez.pagarA(galvan)
 	// vereficar con cuanto dinero queda
 	// gimenez
-	gimenez.dinero()
+	assert.equals(293440, gimenez.dinero())
+}
+
+test "galvan" {
+	// "1.Galván arranca con deuda en 0 y dinero en 0. Su sueldo (que aún no cobró) es de 15000.
+	assert.equals(0, galvan.totalDinero())
+	assert.equals(0, galvan.totalDeuda())
+	// "2.Galván gasta 4000,  totalDeuda()  debe ser 4000,  totalDinero()  debe ser 0.
+	galvan.gasta(4000)
+	assert.equals(-4000, galvan.totalDeuda())
+	assert.equals(0, galvan.totalDinero())
+	// "3.Galván gasta otros 8000,  totalDeuda()  pasa a 12000,  totalDinero()  sigue en 0.
+	galvan.gasta(8000)
+	assert.equals(-12000, galvan.totalDeuda())
+	assert.equals(0, galvan.totalDinero())
+	// "4.Galván cobra, con los 15000 que recibe paga toda su deuda y le sobran 3000 pesos. Por lo tanto,  totalDeuda()  debe ser 0, y  totalDinero()  debe ser 3000.
+	galvan.cobrarSueldo()
+	assert.equals(0, galvan.totalDeuda())
+	assert.equals(3000, galvan.totalDinero())
+	// "5.Galván gasta 25000, cubre 3000 con el dinero que tiene, el resto es deuda.  totalDeuda()  queda en 22000,  totalDinero()  en 0."
+	galvan.gasta(25000)
+	assert.equals(-22000, galvan.totalDeuda())
+	assert.equals(0, galvan.totalDinero())
+	// "6.Galván cobra, tiene que dedicar los 15000 a pagar deudas, y no le alcanza. Ahora,  totalDeuda()  pasa a 7000, y  totalDinero()  a 0."
+	galvan.cobrarSueldo()
+	assert.equals(-7000, galvan.totalDeuda())
+	assert.equals(0, galvan.totalDinero())
 }
